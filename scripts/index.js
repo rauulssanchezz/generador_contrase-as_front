@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 	// Función para copiar texto al portapapeles
 	function copiarAlPortapapeles(texto) {
-		if (navigator.clipboard) {
+			if (navigator.clipboard) {
 			navigator.clipboard.writeText(texto);
 		} else {
 			// Fallback para navegadores antiguos
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Password Generator
 	const generatorSection = document.querySelectorAll('.bg-white.rounded-lg.shadow-md')[0];
 	const generateBtn = generatorSection.querySelector('button');
+	const complexitySelect = generatorSection.querySelector('select');
 	const generatedPasswordInput = generatorSection.querySelector('input[placeholder="Password will appear here"]');
 	const generatedCopyBtn = generatorSection.querySelector('div[data-icon="Copy"]');
 	if (generatedCopyBtn && generatedPasswordInput) {
