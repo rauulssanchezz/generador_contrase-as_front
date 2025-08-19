@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (generatedCopyBtn && generatedPasswordInput) {
 		generatedCopyBtn.style.cursor = 'pointer';
 		generatedCopyBtn.title = 'Copiar al portapapeles';
+		generatedCopyBtn.addEventListener('click', () => {
 			copiarAlPortapapeles(generatedPasswordInput.value);
 		});
 	}
