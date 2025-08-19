@@ -16,10 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	// Password Generator
 	const generatorSection = document.querySelectorAll('.bg-white.rounded-lg.shadow-md')[0];
-	const generateBtn = generatorSection.querySelector('button');
 	const complexitySelect = generatorSection.querySelector('select');
+	const generateBtn = generatorSection.querySelector('button');
 	const generatedPasswordInput = generatorSection.querySelector('input[placeholder="Password will appear here"]');
-	// Copiar generado
 	const generatedCopyBtn = generatorSection.querySelector('div[data-icon="Copy"]');
 	if (generatedCopyBtn && generatedPasswordInput) {
 		generatedCopyBtn.style.cursor = 'pointer';
@@ -32,9 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (generateBtn && complexitySelect && generatedPasswordInput) {
 			generateBtn.addEventListener('click', async () => {
 				const complexity = complexitySelect.value;
-				console.log('Generate Password button clicked. Complexity:', complexity);
 				// Animación de cargando
-				let dots = 0;
 				generatedPasswordInput.value = 'Cargando';
 				let loadingInterval = setInterval(() => {
 					dots = (dots + 1) % 4;
@@ -54,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					}
 				} catch (e) {
 					clearInterval(loadingInterval);
-					console.error('Error generating password:', e);
 					generatedPasswordInput.value = 'Error';
 				}
 			});
@@ -74,11 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			copiarAlPortapapeles(hashedPasswordInput.value);
 		});
 	}
-
 		if (hashBtn && passwordToHashInput && hashedPasswordInput) {
 			hashBtn.addEventListener('click', async () => {
 				const password = passwordToHashInput.value;
-				console.log('Hash Password button clicked. Password:', password);
 				// Animación de cargando
 				let dots = 0;
 				hashedPasswordInput.value = 'Cargando';
@@ -100,14 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
 						hashedPasswordInput.value = data.hashed_password;
 					} else if (data.detail && Array.isArray(data.detail)) {
 						// Mostrar el mensaje de error de la API y log completo para depuración
-						console.error('API error detail:', data.detail);
 						hashedPasswordInput.value = data.detail.map(e => `${e.loc ? e.loc.join('.') + ': ' : ''}${e.msg}`).join('; ');
 					} else {
 						hashedPasswordInput.value = 'Error';
 					}
 				} catch (e) {
 					clearInterval(loadingInterval);
-					console.error('Error hashing password:', e);
 					hashedPasswordInput.value = 'Error';
 				}
 			});
@@ -121,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Copiar hash checker (opcional, si quieres copiar el input de hash checker)
 	const checkerCopyBtn = checkerSection.querySelector('div[data-icon="Copy"]');
 	if (checkerCopyBtn && hashedPasswordCheckInput) {
-		checkerCopyBtn.style.cursor = 'pointer';
 		checkerCopyBtn.title = 'Copiar al portapapeles';
 		checkerCopyBtn.addEventListener('click', () => {
 			copiarAlPortapapeles(hashedPasswordCheckInput.value);
@@ -140,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			checkBtn.addEventListener('click', async () => {
 				const password = passwordCheckInput.value;
 				const hashed_password = hashedPasswordCheckInput.value;
-				console.log('Check Password button clicked. Password:', password, 'Hashed:', hashed_password);
 				// Animación de cargando
 				let dots = 0;
 				resultText.textContent = 'Cargando';
@@ -175,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					}
 				} catch (e) {
 					clearInterval(loadingInterval);
-					console.error('Error checking password:', e);
 					resultText.textContent = 'Result: Error';
 				}
 			});
